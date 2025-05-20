@@ -12,11 +12,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Trash, Plus, Minus, ArrowLeft, ShoppingCart } from "lucide-react";
+import { Trash, Plus, Minus, ArrowLeft, ShoppingCart, MapPin } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
 import { useToast } from "@/components/ui/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 const Cart = () => {
   const { items, removeItem, updateQuantity, clearCart, totalPrice } = useCart();
@@ -24,10 +26,41 @@ const Cart = () => {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [showPayPal, setShowPayPal] = useState(false);
   
+  // Address form state
+  const [address, setAddress] = useState({
+    fullName: "",
+    street: "",
+    city: "",
+    state: "",
+    postalCode: "",
+    phone: "",
+  });
+  
   // Calculate total with tax
   const totalWithTax = totalPrice + (totalPrice * 0.08);
 
+  const handleAddressChange = (field, value) => {
+    setAddress(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
   const handleCheckoutStart = () => {
+    // Validate address fields
+    const requiredFields = ['fullName', 'street', 'city', 'state', 'postalCode', 'phone'];
+    const missingFields = requiredFields.filter(field => !address[field].trim());
+    
+    if (missingFields.length > 0) {
+      toast({
+        variant: "destructive",
+        title: "Missing Information",
+        description: "Please fill in all address fields to continue.",
+      });
+      return;
+    }
+    
+    // Proceed to payment
     setShowPayPal(true);
   };
 
@@ -86,7 +119,7 @@ const Cart = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-          <Card>
+          <Card className="mb-8">
             <CardHeader>
               <CardTitle>Cart Items ({items.length})</CardTitle>
             </CardHeader>
@@ -176,6 +209,80 @@ const Cart = () => {
                 Clear Cart
               </Button>
             </CardFooter>
+          </Card>
+          
+          {/* Shipping Address Form */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <MapPin className="h-5 w-5 mr-2" />
+                Shipping Address
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="col-span-2">
+                  <Label htmlFor="fullName">Full Name</Label>
+                  <Input 
+                    id="fullName" 
+                    value={address.fullName}
+                    onChange={(e) => handleAddressChange('fullName', e.target.value)}
+                    placeholder="Enter your full name" 
+                    className="mt-1"
+                  />
+                </div>
+                <div className="col-span-2">
+                  <Label htmlFor="street">Street Address</Label>
+                  <Textarea 
+                    id="street" 
+                    value={address.street}
+                    onChange={(e) => handleAddressChange('street', e.target.value)}
+                    placeholder="Enter your street address" 
+                    className="mt-1"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="city">City</Label>
+                  <Input 
+                    id="city" 
+                    value={address.city}
+                    onChange={(e) => handleAddressChange('city', e.target.value)}
+                    placeholder="Enter your city" 
+                    className="mt-1"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="state">State</Label>
+                  <Input 
+                    id="state" 
+                    value={address.state}
+                    onChange={(e) => handleAddressChange('state', e.target.value)}
+                    placeholder="Enter your state" 
+                    className="mt-1"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="postalCode">Postal Code</Label>
+                  <Input 
+                    id="postalCode" 
+                    value={address.postalCode}
+                    onChange={(e) => handleAddressChange('postalCode', e.target.value)}
+                    placeholder="Enter your postal code" 
+                    className="mt-1"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="phone">Phone Number</Label>
+                  <Input 
+                    id="phone" 
+                    value={address.phone}
+                    onChange={(e) => handleAddressChange('phone', e.target.value)}
+                    placeholder="Enter your phone number" 
+                    className="mt-1"
+                  />
+                </div>
+              </div>
+            </CardContent>
           </Card>
         </div>
 
