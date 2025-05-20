@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -45,7 +44,7 @@ const medicationsData = [
     id: 3,
     name: "Lisinopril 10mg",
     price: 85.75,
-    image: "https://images.unsplash.com/photo-1550572017-4fcdbb59cc32?q=80&w=300&auto=format&fit=crop",
+    image: "https://www.crescentpharma.com/wp-content/uploads/2017/08/Lisinopril-10mg-1.png",
     category: "Blood Pressure",
     prescription: true,
     description: "For high blood pressure management"
@@ -63,7 +62,7 @@ const medicationsData = [
     id: 5,
     name: "Metformin 500mg",
     price: 65.25,
-    image: "https://images.unsplash.com/photo-1585435557343-3b348031e799?q=80&w=300&auto=format&fit=crop",
+    image: "https://images.apollo247.in/pub/media/catalog/product/o/k/oka0007_3.jpg",
     category: "Diabetes",
     prescription: true,
     description: "Oral diabetes medication"
@@ -72,7 +71,7 @@ const medicationsData = [
     id: 6,
     name: "Ibuprofen 200mg",
     price: 25.75,
-    image: "https://images.unsplash.com/photo-1626716493197-aac05f97797c?q=80&w=300&auto=format&fit=crop",
+    image: "https://images-cdn.ubuy.co.in/66a38abcf75eb72807620de9-equate-ibuprofen-mini-softgel-capsules.jpg",
     category: "Pain Relief",
     prescription: false,
     description: "Anti-inflammatory pain reliever"
@@ -81,7 +80,7 @@ const medicationsData = [
     id: 7,
     name: "Vitamin D3 1000IU",
     price: 145.00,
-    image: "https://images.unsplash.com/photo-1577174881658-0f30ed549adc?q=80&w=300&auto=format&fit=crop",
+    image: "https://images-cdn.ubuy.co.in/67c8ab1b03808107bf6d140c-nature-s-bounty-vitamin-d3-1000-iu.jpg",
     category: "Vitamins",
     prescription: false,
     description: "Supports bone health and immune function"
@@ -90,7 +89,7 @@ const medicationsData = [
     id: 8,
     name: "Omeprazole 20mg",
     price: 89.50,
-    image: "https://images.unsplash.com/photo-1517373116369-9bdb8cdc9f62?q=80&w=300&auto=format&fit=crop",
+    image: "https://www.adegenpharma.com/wp-content/uploads/2023/02/OMILESS-20-CAPSULE.jpg",
     category: "Digestive Health",
     prescription: false,
     description: "For heartburn and acid reflux"
