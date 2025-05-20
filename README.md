@@ -2,7 +2,6 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/0c4d97f4-3706-4374-a34e-4461e787d749
 
 ## How can I edit this code?
 
@@ -10,7 +9,7 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/0c4d97f4-3706-4374-a34e-4461e787d749) and start prompting.
+
 
 Changes made via Lovable will be committed automatically to this repo.
 
